@@ -6,7 +6,7 @@ public class PlayerDashState : PlayerState
 {
 
 
-    public PlayerDashState(Player _player, PlayerStateMachine _stateMachine, string _animBoolName) 
+    public PlayerDashState(Player _player, PlayerStateMachine _stateMachine, string _animBoolName)
         : base(_player, _stateMachine, _animBoolName)
     {
     }
@@ -16,6 +16,8 @@ public class PlayerDashState : PlayerState
         base.Enter();
 
         stateTimer = player.dashDuration;
+        player.SetVelocity(player.dashDir * player.dashSpeed, 0);
+
     }
 
     public override void Exit()
@@ -29,10 +31,7 @@ public class PlayerDashState : PlayerState
     {
         base.Update();
 
-
-        player.SetVelocity(player.dashDir *player.dashSpeed, 0);
-        
-        if(stateTimer < 0)
+        if (stateTimer < 0)
         {
             stateMachine.ChangeState(player.idleState);
         }
