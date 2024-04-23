@@ -4,6 +4,17 @@ using UnityEngine;
 
 public class Entity : MonoBehaviour
 {
+
+    [Header("Collision info")]
+    [SerializeField]
+    protected Transform groundCheck;
+    [SerializeField]
+    protected float groundCheckDistance;
+    [SerializeField]
+    protected LayerMask whatIsGround;
+
+
+
     public Animator animator { get; private set; }
     public Rigidbody2D rb { get; private set; }
 
@@ -27,6 +38,12 @@ public class Entity : MonoBehaviour
 
     }
 
+
+    public void VelocityZero()
+    {
+        rb.velocity = new Vector2 (0, 0);   
+    }
+
     public void SetVelocity(float _xVelocity, float _yVelocity)
     {
 
@@ -35,22 +52,36 @@ public class Entity : MonoBehaviour
         FlipController(_xVelocity);
     }
 
+    #region Collision
+    public virtual bool IsGroundDetected()
+    {
+        return Physics2D.Raycast(groundCheck.position, Vector2.down, groundCheckDistance, whatIsGround);
+    }
+
+    protected virtual void OnDrawGizmos()
+    {
+        Gizmos.DrawLine(groundCheck.position, new Vector3(groundCheck.position.x, groundCheck.position.y - groundCheckDistance, 0));
+    }
+    #endregion
+
+    #region Flip
     public void FlipController(float _x)
     {
-        if(_x > 0 && !facingRight)
+        if (_x > 0 && !facingRight)
         {
             Flip();
         }
-        else if( _x < 0 && facingRight)
+        else if (_x < 0 && facingRight)
         {
             Flip();
         }
     }
 
-    public void Flip() 
+    public void Flip()
     {
         facingDir *= -1;
         facingRight = !facingRight;
         transform.Rotate(0, 180, 0);
     }
+    #endregion
 }

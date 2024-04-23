@@ -13,6 +13,8 @@ public class PlayerState
     protected float xInput;
     protected float yInput;
 
+    protected float stateTimer;
+
     public PlayerState(Player _player, PlayerStateMachine _stateMachine, string _animBoolName)
     {
         player = _player;
@@ -34,6 +36,8 @@ public class PlayerState
 
     public virtual void Update()
     {
+        stateTimer -= Time.deltaTime;   
+
         xInput = Input.GetAxisRaw("Horizontal");
         yInput = Input.GetAxisRaw("Vertical");
 
