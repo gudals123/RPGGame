@@ -240,6 +240,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   moveSpeed: 12
+  jumpForce: 16
   dashCooldown: 1
   dashSpeed: 25
   dashDuration: 0.3

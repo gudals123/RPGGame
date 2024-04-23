@@ -6,6 +6,7 @@ public class Player : Entity
 {
     [Header("Move info")]
     public float moveSpeed;
+    public float jumpForce;
 
 
     [Header("Dash info")]
@@ -23,6 +24,10 @@ public class Player : Entity
     public PlayerMoveState moveState { get; private set; }
     public PlayerDashState dashState { get; private set; }
 
+    public PlayerJumpState jumpState { get; private set; }
+    public PlayerAirState airState { get; private set; }    
+
+
     #endregion
 
     protected override void Awake()
@@ -33,6 +38,9 @@ public class Player : Entity
         idleState = new PlayerIdleState(this, stateMachine, "isIdle");
         moveState = new PlayerMoveState(this, stateMachine, "isMove");
         dashState = new PlayerDashState(this, stateMachine, "isDash");
+        jumpState = new PlayerJumpState(this, stateMachine, "isJump");
+        airState = new PlayerAirState(this, stateMachine, "isJump");
+
 
     }
 
@@ -51,6 +59,8 @@ public class Player : Entity
         stateMachine.currentState.Update();
 
         CheckForDashInput();
+
+        
     }
 
 
