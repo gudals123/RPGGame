@@ -2,17 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerGroundedState : MonoBehaviour
+public class PlayerGroundedState : PlayerState
 {
-
-    void Start()
+    public PlayerGroundedState(Player _player, PlayerStateMachine _stateMachine, string _animBoolName) 
+        : base(_player, _stateMachine, _animBoolName)
     {
-        
     }
 
-
-    void Update()
+    public override void Enter()
     {
-        
+        base.Enter();
+    }
+
+    public override void Exit()
+    {
+        base.Exit();
+    }
+
+    public override void Update()
+    {
+        base.Update();
     }
 }
