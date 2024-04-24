@@ -22,13 +22,14 @@ public class PlayerAirState : PlayerState
     {
         base.Update();
 
+        if (xInput != 0)
+        {
+            player.SetVelocity(player.moveSpeed * 0.8f * xInput, rb.velocity.y);
+        }
+
         if (player.IsGroundDetected())
         {
             stateMachine.ChangeState(player.idleState);
         }
-
-
-
-
     }
 }

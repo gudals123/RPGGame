@@ -67,7 +67,6 @@ public class Player : Entity
 
     private void CheckForDashInput()
     {
-
         dashUsageTimer -= Time.deltaTime;
         
         if(Input.GetKeyDown(KeyCode.LeftShift) && dashUsageTimer < 0)
@@ -85,7 +84,4 @@ public class Player : Entity
         }
 
     }
-
-
-
 }
