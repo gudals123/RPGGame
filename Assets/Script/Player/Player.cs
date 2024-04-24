@@ -26,7 +26,8 @@ public class Player : Entity
 
     public PlayerJumpState jumpState { get; private set; }
     public PlayerAirState airState { get; private set; }    
-
+    public PlayerWallSlideState wallSlideState { get; private set; }
+    public PlayerWallJumpState wallJumpState { get; private set; }
 
     #endregion
 
@@ -40,8 +41,8 @@ public class Player : Entity
         dashState = new PlayerDashState(this, stateMachine, "isDash");
         jumpState = new PlayerJumpState(this, stateMachine, "isJump");
         airState = new PlayerAirState(this, stateMachine, "isJump");
-
-
+        wallSlideState = new PlayerWallSlideState(this, stateMachine, "isWallSlide");
+        wallJumpState = new PlayerWallJumpState(this, stateMachine, "isJump");
     }
 
 
@@ -62,8 +63,6 @@ public class Player : Entity
 
         
     }
-
-
 
     private void CheckForDashInput()
     {

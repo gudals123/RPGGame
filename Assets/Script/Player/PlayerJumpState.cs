@@ -24,10 +24,6 @@ public class PlayerJumpState : PlayerState
     {
         base.Update();
 
-        if (xInput != 0)
-        {
-            player.SetVelocity(player.moveSpeed * 0.8f * xInput, rb.velocity.y);
-        }
 
         if (rb.velocity.y < 0)
         {
